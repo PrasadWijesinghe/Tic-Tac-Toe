@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './Weather.css'
 import search from '../assets/search.png'
 import clear from '../assets/clear.png'	
@@ -11,6 +11,24 @@ import wind from '../assets/wind.png'
 
 
 const Weather = () => {
+
+const search = async (city)=>{
+  try{
+    const url=`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${import.meta.env.VITE_APP_ID}`;
+
+    const response = await fetch(url);
+    const data = await response.json();
+    console.log(data);
+  }
+  catch(err){
+    console.log(err)
+  }
+}
+
+useEffect(()=>{
+  search("London")
+},[])
+
   return (
 
     <div className="app">
